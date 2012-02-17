@@ -1,0 +1,19 @@
+DESCRIPTION
+        git-tag
+
+	Create, list, or delete a tag object.
+
+SYNTAX
+        git-tag [options] [name]
+
+ARGUMENTS
+        name
+                The name of the tag to create/delete.
+
+OPTIONS
+        --delete, -d
+                Delete existing tag with the given names.
+        --force, -f
+                Replace an existing tag with the given name (instead of failing).
+        --non-interactive
+                Controls if the shell can ask for input or not.

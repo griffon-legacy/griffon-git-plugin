@@ -1,0 +1,16 @@
+DESCRIPTION
+        git-ignore
+
+	Add .gitignore patterns.
+
+SYNTAX
+        git-ignore [options] [patterns]
+
+ARGUMENTS
+        patterns
+                Patterns to be added to .gitgnore
+
+OPTIONS
+        --non-interactive
+                Controls if the shell can ask for input or not.
+

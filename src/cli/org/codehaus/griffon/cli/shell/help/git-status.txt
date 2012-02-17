@@ -1,0 +1,11 @@
+DESCRIPTION
+        git-status
+
+	Show the working tree status.
+
+SYNTAX
+        git-status [options]
+
+OPTIONS
+        --non-interactive
+                Controls if the shell can ask for input or not.

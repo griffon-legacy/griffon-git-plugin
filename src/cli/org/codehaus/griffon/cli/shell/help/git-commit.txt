@@ -1,0 +1,22 @@
+DESCRIPTION
+        git-commit
+
+	Record changes to the repository.
+
+SYNTAX
+        git-commit [options]
+
+OPTIONS
+        --all, -a
+                Tell the command to automatically stage files that have been modified and deleted, but new files you
+                have not told git about are not affected.
+        --amend
+                Used to amend the tip of the current branch. Prepare the tree object you would want to replace the latest
+                commit as usual (this includes the usual -i/-o and explicit paths), and the commit log editor is seeded
+                with the commit message from the tip of the current branch. The commit you create replaces the current
+                tip -- if it was a merge it will have the parents of the current tip as parents -- so the current top
+                commit is discarded.
+        --message, -m
+                Use the given <msg> as the commit message.
+        --non-interactive
+                Controls if the shell can ask for input or not.

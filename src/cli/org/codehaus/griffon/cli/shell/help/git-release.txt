@@ -1,0 +1,11 @@
+DESCRIPTION
+        gitrelease
+
+	Single line description goes here.
+
+SYNTAX
+        gitrelease [options]
+
+OPTIONS
+        --non-interactive
+                Controls if the shell can ask for input or not.

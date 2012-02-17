@@ -1,0 +1,11 @@
+DESCRIPTION
+        git-init
+
+	Create an empty git repository or reinitialize an existing one.
+
+SYNTAX
+        git-init [options]
+
+OPTIONS
+        --non-interactive
+                Controls if the shell can ask for input or not.
