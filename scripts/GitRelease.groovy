@@ -1,8 +1,3 @@
-import org.codehaus.griffon.artifacts.ArtifactUtils
-import org.codehaus.griffon.artifacts.model.Plugin
-import org.codehaus.griffon.artifacts.model.Archetype
-import griffon.util.Metadata
-
 /*
  * Copyright 2012 the original author or authors.
  *
@@ -19,6 +14,11 @@ import griffon.util.Metadata
  * limitations under the License.
 */
 
+import org.codehaus.griffon.artifacts.ArtifactUtils
+import org.codehaus.griffon.artifacts.model.Plugin
+import org.codehaus.griffon.artifacts.model.Archetype
+import griffon.util.Metadata
+
 /**
  * @author Andres Almiray
  */
@@ -28,7 +28,7 @@ includePluginScript('git', 'GitTag')
 includePluginScript('git', 'GitPush')
 
 target(name: 'git-release',
-        description: "Commits, tags and pushes a new release.",
+        description: "Commits, tags and pushes a new release",
         prehook: null, posthook: null) {
 
     if (getPropertyValue('git.disable.release', false)) return

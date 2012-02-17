@@ -27,7 +27,7 @@ import org.eclipse.jgit.transport.PushResult
 gitManager = null
 
 target(name: 'git-push',
-        description: "Update remote refs along with associated objects.",
+        description: "Update remote refs along with associated objects",
         prehook: null, posthook: null) {
     if(!gitManager) gitManager = new GitManager()
     gitManager.readyPush()
