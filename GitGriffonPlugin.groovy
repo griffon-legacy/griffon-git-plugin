@@ -56,8 +56,8 @@ Usage
 -----
 Once installed the plugin will initialize an empty Git repository if none is already available. It provides some basic commands
 for working with Git, perhaps the most important one is `git-release` in the context of a plugin or archetype project. Whenever 
-a project of any of those types is released the plugin will automatically make a commit with the release message, tag the release
-and push it to the default remote.
+a project of any of those types is released (by invoking `release-plugin`, `release-archetype` or just `release`) the plugin will
+automatically make a commit with the release message, tag the release and push it to the default remote.
 
 Configuration
 -------------
@@ -68,7 +68,7 @@ and `.git/config`, however it allows you to override some of the configuration l
 
     git {
         author {
-            name = 'Andres Almiray'
+            name  = 'Andres Almiray'
             email = 'aalmiray@yahoo.com'
         }
         repositories {
@@ -84,7 +84,7 @@ You may define multiple named blocks inside the repositories block. Each one of 
 required to push to that particular repository. The `passphrase` property is only needed if connecting to a remote repository
 that requires SSH authentication.
 
-This plugin will **NOT** setup SSG keys for you, it expects that configuration step to be already in place. If you're intention
+This plugin will **NOT** setup SSH keys for you, it expects that configuration step to be already in place. If you're intention
 is to publish to Github then please follow the instructions detailed in [Github's help][2] page.
 
 ### Command flags

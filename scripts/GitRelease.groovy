@@ -27,6 +27,8 @@ includePluginScript('git', 'GitCommit')
 includePluginScript('git', 'GitTag')
 includePluginScript('git', 'GitPush')
 
+artifactInfo = null
+
 target(name: 'git-release',
         description: "Commits, tags and pushes a new release",
         prehook: null, posthook: null) {
@@ -39,9 +41,15 @@ target(name: 'git-release',
 
     'git-commit'()
 
+    def paramsCopy = []
+    paramsCopy.addAll(argsMap.params)
     argsMap.params << computeTagName()
 
     'git-tag'()
+
+    gitManager.close()
+    argsMap.params = paramsCopy
+
     'git-push'()
 }
 

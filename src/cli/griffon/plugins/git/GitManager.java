@@ -48,6 +48,7 @@ public class GitManager {
     private static final String KEY_PREFIX = "git.repositories.";
 
     private final ConfigObject config;
+    private Git git;
 
     public GitManager() throws IOException {
         this(BuildSettingsHolder.getSettings().getConfig());
@@ -68,7 +69,17 @@ public class GitManager {
     }
 
     public Git git() throws IOException {
-        return Git.open(new File(".git"));
+        if (null == git) {
+            git = Git.open(new File(".git"));
+        }
+        return git;
+    }
+
+    public void close() {
+        if (null != git) {
+            git.getRepository().close();
+            git = null;
+        }
     }
 
     public PersonIdent getAuthor() {

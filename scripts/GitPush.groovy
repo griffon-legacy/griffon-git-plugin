@@ -30,15 +30,15 @@ target(name: 'git-push',
         description: "Update remote refs along with associated objects",
         prehook: null, posthook: null) {
     if(!gitManager) gitManager = new GitManager()
-    gitManager.readyPush()
     PushCommand cmd = gitManager.git().push()
+    gitManager.readyPush()
 
     cmd.force = argsMap.force || argsMap.f ?: false
     if (argsMap.all) cmd.setPushAll()
     if (argsMap.tags) cmd.setPushTags()
 
     String remote = argsMap.params ? argsMap.params[0] : 'origin'
-    cmd.setCredentialsProvider(gitManager.getCredentialsProvider(remote))
+    cmd.credentialsProvider = gitManager.getCredentialsProvider(remote)
 
     try {
         Iterable<PushResult> results = cmd.call()
@@ -47,8 +47,8 @@ target(name: 'git-push',
             def oldRef = result.trackingRefUpdates.oldObjectId
             def newRef = result.trackingRefUpdates.newObjectId
             if (oldRef && newRef) {
-                def previousHash = oldRef[0].name()[0..7]
-                def newHash = newRef[0].name()[0..7]
+                def previousHash = (oldRef[0]?.name() ?: '00000000')[0..7]
+                def newHash = (newRef[0]?.name() ?: '00000000')[0..7]
                 println "To ${result.URI}"
                 println "   ${previousHash}..${newHash} ${branch}"
             } else {
