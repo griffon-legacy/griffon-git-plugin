@@ -46,7 +46,7 @@ class GitGriffonPlugin {
                     email: 'aalmiray@yahoo.com'
             ]
     ]
-    String title = 'Plugin summary/headline'
+    String title = 'Integrate a Griffon project with Git'
     // accepts Markdown syntax. See http://daringfireball.net/projects/markdown/ for details
     String description = '''
 This plugin provides integration with [Git][1], a free & open source, distributed version control system designed to handle
