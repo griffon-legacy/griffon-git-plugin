@@ -29,3 +29,9 @@ eventReleasePluginEnd = {
     if (compilingPlugin('git')) return
     'git-release'()
 }
+
+eventCreateProject = { type, basedir, projectName ->
+    griffonSettings.baseDir = basedir as File
+    includePluginScript('git', 'GitInit')
+    'git-init'()
+}

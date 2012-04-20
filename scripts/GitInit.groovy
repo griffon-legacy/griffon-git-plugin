@@ -22,6 +22,6 @@ import griffon.plugins.git.GitManager
 
 target(name: 'git-init', description: 'Create an empty git repository or reinitialize an existing one',
         prehook: null, posthook: null) {
-    GitManager gitManager = new GitManager()
+    GitManager gitManager = new GitManager(griffonSettings)
 }
 setDefaultTarget('git-init')

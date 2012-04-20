@@ -24,7 +24,7 @@ import org.eclipse.jgit.api.AddCommand
 target(name: 'git-add',
         description: "Add file contents to the index",
         prehook: null, posthook: null) {
-    GitManager gitManager = new GitManager()
+    GitManager gitManager = new GitManager(griffonSettings)
     AddCommand cmd = gitManager.git().add()
     if (argsMap.params) {
         argsMap.params.each { pattern ->

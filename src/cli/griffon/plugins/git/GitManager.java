@@ -16,9 +16,8 @@
 package griffon.plugins.git;
 
 import com.jcraft.jsch.Session;
-import griffon.util.BuildSettingsHolder;
+import griffon.util.BuildSettings;
 import griffon.util.ConfigUtils;
-import groovy.util.ConfigObject;
 import org.codehaus.groovy.runtime.DefaultGroovyMethods;
 import org.eclipse.jgit.api.AddCommand;
 import org.eclipse.jgit.api.Git;
@@ -33,8 +32,6 @@ import org.eclipse.jgit.util.FS;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import static griffon.util.GriffonNameUtils.isBlank;
 
@@ -47,19 +44,11 @@ public class GitManager {
     private static final String KEY_PASSPHRASE = ".passphrase";
     private static final String KEY_PREFIX = "git.repositories.";
 
-    private final ConfigObject config;
+    private final BuildSettings buildSettings;
     private Git git;
 
-    public GitManager() throws IOException {
-        this(BuildSettingsHolder.getSettings().getConfig());
-    }
-
-    public GitManager(ConfigObject config) throws IOException {
-        if (config == null || config.isEmpty()) {
-            this.config = BuildSettingsHolder.getSettings().getConfig();
-        } else {
-            this.config = config;
-        }
+    public GitManager(BuildSettings buildSettings) throws IOException {
+        this.buildSettings = buildSettings;
 
         initIfNeeded();
     }
@@ -70,7 +59,7 @@ public class GitManager {
 
     public Git git() throws IOException {
         if (null == git) {
-            git = Git.open(new File(".git"));
+            git = Git.open(new File(buildSettings.getBaseDir(), ".git"));
         }
         return git;
     }
@@ -116,8 +105,7 @@ public class GitManager {
     private Object getConfigValue(String key, Object defaultValue) {
         Object value = System.getProperty(key);
         if (value != null) return value;
-        Map map = config.flatten(new LinkedHashMap());
-        value = map.get(key);
+        value = ConfigUtils.getConfigValue(buildSettings.getConfig(), key);
         return value != null ? value : defaultValue;
     }
 
@@ -125,7 +113,7 @@ public class GitManager {
         try {
             git();
         } catch (IOException e) {
-            File basedir = new File(".");
+            File basedir = new File(buildSettings.getBaseDir(), ".");
             InitCommand init = Git.init();
             init.setDirectory(basedir);
             init.call();
@@ -162,15 +150,15 @@ public class GitManager {
     }
 
     private String getUsername(String repository) {
-        return ConfigUtils.getConfigValueAsString(config, KEY_PREFIX + repository + KEY_USERNAME, null);
+        return ConfigUtils.getConfigValueAsString(buildSettings.getConfig(), KEY_PREFIX + repository + KEY_USERNAME, null);
     }
 
     private String getPassword(String repository) {
-        return ConfigUtils.getConfigValueAsString(config, KEY_PREFIX + repository + KEY_PASSWORD, null);
+        return ConfigUtils.getConfigValueAsString(buildSettings.getConfig(), KEY_PREFIX + repository + KEY_PASSWORD, null);
     }
 
     private String getPassphrase(String repository) {
-        return ConfigUtils.getConfigValueAsString(config, KEY_PREFIX + repository + KEY_PASSPHRASE, null);
+        return ConfigUtils.getConfigValueAsString(buildSettings.getConfig(), KEY_PREFIX + repository + KEY_PASSPHRASE, null);
     }
 
     private static class ExtendedCredentialsProvider extends UsernamePasswordCredentialsProvider {

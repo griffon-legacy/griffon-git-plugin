@@ -14,7 +14,7 @@
  * limitations under the License.
 */
 
-import org.codehaus.griffon.artifacts.ArtifactUtils
+import griffon.util.ArtifactSettings
 import org.codehaus.griffon.artifacts.model.Plugin
 import org.codehaus.griffon.artifacts.model.Archetype
 import griffon.util.Metadata
@@ -60,14 +60,14 @@ computeTagName = {
     if (isPluginProject) {
         if (!artifactInfo) {
             includeTargets << griffonScript('PackagePlugin')
-            def pluginDescriptor = ArtifactUtils.getPluginDescriptor(basedir)
+            def pluginDescriptor = ArtifactSettings.getPluginDescriptor(basedir)
             artifactInfo = loadArtifactInfo(Plugin.TYPE, pluginDescriptor)
         }
         version = artifactInfo.version
     } else if(isArchetypeProject) {
         if (!artifactInfo) {
             includeTargets << griffonScript('PackageArchetype')
-            def archetypeDescriptor = ArtifactUtils.getArchetypeDescriptor(basedir)
+            def archetypeDescriptor = ArtifactSettings.getArchetypeDescriptor(basedir)
             artifactInfo = loadArtifactInfo(Archetype.TYPE, archetypeDescriptor)
         }
         version = artifactInfo.version

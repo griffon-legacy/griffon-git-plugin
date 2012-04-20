@@ -27,7 +27,7 @@ gitManager = null
 target(name: 'git-commit',
         description: "Record changes to the repository",
         prehook: null, posthook: null) {
-    if(!gitManager) gitManager = new GitManager()
+    if(!gitManager) gitManager = new GitManager(griffonSettings)
     CommitCommand cmd = gitManager.git().commit()
 
     if (!argsMap.message) {

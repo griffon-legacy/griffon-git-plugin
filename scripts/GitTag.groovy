@@ -29,7 +29,7 @@ gitManager = null
 target(name: 'git-tag',
         description: "Create, list, or delete a tag object",
         prehook: null, posthook: null) {
-    if(!gitManager) gitManager = new GitManager()
+    if(!gitManager) gitManager = new GitManager(griffonSettings)
 
     if (!argsMap.params) {
         // list

@@ -14,11 +14,10 @@
  * limitations under the License.
 */
 
-import griffon.plugins.git.GitManager
-
 /**
  * @author Andres Almiray
  */
+ 
+includePluginScript('git', 'GitInit')
 
-// initializes an empty repo
-new GitManager()
+'git-init'()

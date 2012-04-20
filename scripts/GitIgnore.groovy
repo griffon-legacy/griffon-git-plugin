@@ -23,7 +23,7 @@ import griffon.plugins.git.GitManager
 target(name: 'git-ignore',
         description: "Add .gitignore patterns",
         prehook: null, posthook: null) {
-    GitManager gitManager = new GitManager()
+    GitManager gitManager = new GitManager(grifonSettings)
 
     File gitignoreFile = new File('.gitignore')
 

@@ -29,7 +29,7 @@ gitManager = null
 target(name: 'git-push',
         description: "Update remote refs along with associated objects",
         prehook: null, posthook: null) {
-    if(!gitManager) gitManager = new GitManager()
+    if(!gitManager) gitManager = new GitManager(griffonSettings)
     PushCommand cmd = gitManager.git().push()
     gitManager.readyPush()
 

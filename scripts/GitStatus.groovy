@@ -26,7 +26,7 @@ import static griffon.util.GriffonNameUtils.capitalize
 target(name: 'git-status',
         description: "Show the working tree status",
         prehook: null, posthook: null) {
-    GitManager gitManager = new GitManager()
+    GitManager gitManager = new GitManager(griffonSettings)
     StatusCommand cmd = gitManager.git().status()
 
     Status status = cmd.call()
