@@ -19,9 +19,9 @@
  */
 class GitGriffonPlugin {
     // the plugin version
-    String version = '0.2'
+    String version = '0.3'
     // the version or versions of Griffon the plugin is designed for
-    String griffonVersion = '0.9.5 > *'
+    String griffonVersion = '1.0.0 > *'
     // the other plugins this plugin depends on
     Map dependsOn = [:]
     // resources that are included in plugin packaging
@@ -86,7 +86,7 @@ You may define multiple named blocks inside the repositories block. Each one of 
 required to push to that particular repository. The `passphrase` property is only needed if connecting to a remote repository
 that requires SSH authentication.
 
-This plugin will **NOT** setup SSH keys for you, it expects that configuration step to be already in place. If you're intention
+This plugin will **NOT** setup SSH keys for you, it expects that configuration step to be already in place. If your intention
 is to publish to Github then please follow the instructions detailed in [Github's help][2] page.
 
 ### Command flags
